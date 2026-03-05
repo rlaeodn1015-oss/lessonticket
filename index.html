@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
     <style>
       :root {
-        --primary: #556b2f;
+        --primary: #556b2f; 
         --primary-light: #f1f5e9;
         --secondary: #d4a373;
         --bg: #fdfdfb;
@@ -222,6 +222,11 @@
               <div className="pill">2025 시즌 첫 필드 캠프 🌿</div>
               <div className="pill" style={{ background: "#fff", border: "1px solid var(--primary)", color: "var(--primary)" }}>제주 아덴힐 CC 프라이빗 캠프</div>
             </div>
+            <div style={{ display: "flex", justifyContent: "center", gap: "10px", marginBottom: "20px", flexWrap: "wrap" }}>
+                <span className="bg-slate-900 text-white px-3 py-1 rounded-full text-xs font-bold">3/25(평일) 잔여 1석</span>
+                <span className="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full text-xs font-bold border border-emerald-200">3/28-29(주말) 2인 가능</span>
+                <span className="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-xs font-bold border border-yellow-200">2인 신청 시 일정 조율 가능</span>
+            </div>
             <h1 className="h1">연습장 싱글이신가요?<br/>필드에선 <span>백돌이</span>인 당신을 위해</h1>
             <p style={{ fontSize: "20px", color: "var(--muted)", fontWeight: "600" }}>연습장 100시간보다 확실한 한 번의 필드 경험,<br/>서수연 프로의 36H 밀착 제주 캠프</p>
             <p style={{ marginTop: "40px", fontWeight: "700", color: "#444", background: "var(--primary-light)", display: "inline-block", padding: "15px 30px", borderRadius: "20px", fontSize: "16px" }}>
@@ -238,10 +243,10 @@
         <div className="bg-white border-y border-slate-50 py-10 px-5">
           <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-4 text-center">
             {[
-              {l: "이번 주 잔여석", v: "3월 7일 1자리", c: "text-red-500"},
-              {l: "누적 수강생", v: "280명+", c: "text-slate-900"},
-              {l: "평균 타수 개선", v: "-8타", c: "text-emerald-600"},
-              {l: "레슨 후 만족도", v: "99%", c: "text-slate-900"}
+              {l: "3/25(평일) 잔여", v: "단 1자리", c: "text-red-500"},
+              {l: "3/28-29(주말)", v: "2인 가능", c: "text-slate-900"},
+              {l: "2인 신청 혜택", v: "우선 확정", c: "text-emerald-600"},
+              {l: "기타 일정", v: "상담 후 조율", c: "text-slate-900"}
             ].map(item => (
               <div key={item.l} className="space-y-0.5">
                 <div className="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-wider">{item.l}</div>
@@ -266,7 +271,6 @@
                 <li>• 강남 프리미엄 프라이빗 레슨 스튜디오 운영</li>
                 <li>• 데이터 기반 스윙 분석 및 교정 10년 노하우</li>
               </ul>
-              {/* 추가된 버튼 섹션 */}
               <div style={{ marginTop: "30px", display: "flex", gap: "10px", flexWrap: "wrap" }}>
                 <a href="https://www.instagram.com/s.o_o.yeon/" target="_blank" className="btn btn-outline" style={{ padding: "12px 24px", fontSize: "14px" }}>인스타그램 ↗</a>
                 <a href="http://pf.kakao.com/_kxawRn/chat" target="_blank" className="btn" style={{ padding: "12px 24px", fontSize: "14px" }}>담당자 문의 (카톡)</a>
@@ -349,8 +353,9 @@
               </p>
             </div>
             <div className="apply-wrap">
-              <div style={{ position: "absolute", top: "-18px", left: "50%", transform: "translateX(-50%)", background: "#e03131", color: "#fff", padding: "6px 16px", borderRadius: "8px", fontSize: "13px", fontWeight: "900", boxShadow: "0 4px 12px rgba(224, 49, 49, 0.3)", whiteSpace: "nowrap" }}>🚨 잔여석 단 1자리 (3/25 일정)</div>
-              <h3 className="center" style={{ fontSize: "26px", fontWeight: "900", marginBottom: "30px", marginTop: "10px" }}>캠프 잔여석 신청서</h3>
+              <div style={{ position: "absolute", top: "-22px", left: "50%", transform: "translateX(-50%)", background: "#111", color: "#fff", padding: "8px 20px", borderRadius: "10px", fontSize: "14px", fontWeight: "900", boxShadow: "0 10px 25px rgba(0,0,0,0.2)", whiteSpace: "nowrap", border: "1px solid #333" }}>🏆 2인 신청 시 캠프 우선 확정</div>
+              <h3 className="center" style={{ fontSize: "26px", fontWeight: "900", marginBottom: "20px", marginTop: "15px" }}>캠프 신청서 작성</h3>
+              <p className="center" style={{ fontSize: "13px", color: "var(--muted)", marginBottom: "20px", fontWeight: "700" }}>* 희망하시는 개별 일정 조율이 가능합니다</p>
               <FormTimer />
               {status === "SUCCESS" ? (
                 <div className="text-center py-12">
@@ -362,10 +367,12 @@
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="space-y-5">
                     <div className="space-y-1.5">
-                      <label style={{ display: "block", fontWeight: "800", fontSize: "11px", marginBottom: "4px", color: "var(--muted)" }}>희망 일정</label>
+                      <label style={{ display: "block", fontWeight: "800", fontSize: "11px", marginBottom: "4px", color: "var(--muted)" }}>희망 일정 및 인원</label>
                       <select className="input" name="일정" style={{ margin: 0 }}>
-                        <option>3월 25-26일 (평일) - 잔여 1석 가능</option>
-                        <option>3월 28-29일 (주말) - 조기 마감 예정</option>
+                        <option>3월 25-26일 (평일) - 잔여 1석</option>
+                        <option>3월 28-29일 (주말) - 2인 신청 가능</option>
+                        <option>그 외 개별 일정 요청 (2인 이상)</option>
+                        <option>상담 후 일정 결정</option>
                       </select>
                     </div>
                     <div className="space-y-1.5">
@@ -378,8 +385,8 @@
                     </div>
                   </div>
                   <div className="space-y-1.5">
-                    <label style={{ display: "block", fontWeight: "800", fontSize: "11px", marginBottom: "4px", color: "var(--muted)" }}>필드에서 가장 고민인 점</label>
-                    <textarea name="고민" className="input" style={{ height: "120px", borderRadius: "24px", margin: 0 }} placeholder="예: 어프로치 입스가 왔어요, 드라이버 슬라이스가 심해요" required></textarea>
+                    <label style={{ display: "block", fontWeight: "800", fontSize: "11px", marginBottom: "4px", color: "var(--muted)" }}>해결하고 싶은 고민 및 동반 인원</label>
+                    <textarea name="고민" className="input" style={{ height: "120px", borderRadius: "24px", margin: 0 }} placeholder="예: 어프로치 입스 해결하고 싶어요 / 친구와 2인 신청합니다" required></textarea>
                   </div>
                   <button disabled={status==="SUBMITTING"} className="btn" style={{ width: "100%", padding: "18px 0", marginTop: "10px" }}>
                     {status === "SUBMITTING" ? "전송 중..." : "캠프 참여 신청하기 ✨"}
