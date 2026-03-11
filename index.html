@@ -247,11 +247,22 @@
             </p>
 
             <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <button onclick="document.getElementById('apply').scrollIntoView({behavior:'smooth'})" class="btn-premium w-full sm:w-auto px-10 py-5 md:px-12 md:py-6 bg-emerald-600 hover:bg-emerald-700 text-white rounded-[1.5rem] md:rounded-[2rem] font-black text-xl md:text-2xl flex items-center justify-center gap-3 transform hover:scale-105">
-                    제주 캠프 상담 신청 <i data-lucide="arrow-right" class="w-5 md:w-6"></i>
-                </button>
-            </div>
-        </div>
+
+    <!-- 메인 CTA -->
+    <button onclick="document.getElementById('apply').scrollIntoView({behavior:'smooth'})"
+    class="btn-premium w-full sm:w-auto px-10 py-5 md:px-12 md:py-6 bg-emerald-600 hover:bg-emerald-700 text-white rounded-[1.5rem] md:rounded-[2rem] font-black text-xl md:text-2xl flex items-center justify-center gap-3 transform hover:scale-105">
+        제주 캠프 상담 신청
+        <i data-lucide="arrow-right" class="w-5 md:w-6"></i>
+    </button>
+
+    <!-- 채팅 CTA -->
+    <a href="http://pf.kakao.com/_kxawRn/chat"
+    class="w-full sm:w-auto px-10 py-5 md:px-12 md:py-6 bg-yellow-400 hover:bg-yellow-500 text-black rounded-[1.5rem] md:rounded-[2rem] font-black text-xl md:text-2xl flex items-center justify-center gap-3 shadow-lg transform hover:scale-105">
+        <i data-lucide="message-circle" class="w-5 md:w-6"></i>
+        카카오톡 바로 문의
+    </a>
+
+</div>
         
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full -z-10 opacity-40">
             <div class="absolute top-20 left-10 w-48 h-48 md:w-64 md:h-64 bg-emerald-200 rounded-full blur-[100px] md:blur-[120px] floating"></div>
@@ -434,6 +445,33 @@
                 </div>
             </div>
         </div>
+        <div class="text-center mt-12 md:mt-16 relative z-10">
+
+<p class="text-red-400 font-black mb-6 text-lg">
+⚠ 현재 2석만 남았습니다
+</p>
+
+<div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+
+<a href="https://pf.kakao.com/_YOURCHANNEL/chat"
+class="px-10 py-5 bg-yellow-400 hover:bg-yellow-500 text-black rounded-[2rem] font-black text-lg md:text-xl flex items-center gap-2 shadow-xl transform hover:scale-105">
+
+<i data-lucide="message-circle"></i>
+잔여 2석 카톡 문의
+
+</a>
+
+<button onclick="document.getElementById('apply').scrollIntoView({behavior:'smooth'})"
+class="px-10 py-5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-[2rem] font-black text-lg md:text-xl flex items-center gap-2 shadow-xl transform hover:scale-105">
+
+<i data-lucide="arrow-right"></i>
+캠프 자리 신청하기
+
+</button>
+
+</div>
+
+</div>
     </section>
 
     <!-- Reviews Section -->
@@ -765,6 +803,7 @@
     </script>
 </body>
 </html>
+
 
 
 
