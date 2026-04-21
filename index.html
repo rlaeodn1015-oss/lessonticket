@@ -454,21 +454,25 @@
             payBtn.className = "flex-[1.8] gradient-blue text-white py-5 rounded-2xl font-black text-lg premium-shadow active:scale-95 transition-all btn-ripple tracking-tight";
         }
 
-        function goPay() {
-            if (!selectedPlan) return;
-            // 결제 페이지 이동 로직 (기존 유지)
-            console.log("결제 시작:", selectedPlan.title);
-        }
-        
         function getUserNameFromUrl() {
-            // URL 파라미터 이름 가져오기 로직 (기존 유지)
-            return "고객";
+            const urlParams = new URLSearchParams(window.location.search);
+            let name = urlParams.get('name');
+            return name ? decodeURIComponent(name) : "고객";
         }
 
-        window.onload = () => {
-            initTabs();
-            selectPro(1, document.getElementById('tab-1'));
-        };
+        function goPay() {
+    if (!selectedPlan) return;
+    
+    const pro = prosData.find(p => p.id === currentId);
+    const userName = getUserNameFromUrl();
+    const price = selectedPlan.price;
+    const orderName = `[스승님] ${pro.name} - ${selectedPlan.title}`;
+    const requestId = `SNIM_${currentId}_${selectedPlan.title.replace(/ /g, '_')}_${Date.now()}`;
+
+    // pay.html로 데이터 전송하며 이동
+    const payUrl = `pay.html?price=${price}&name=${encodeURIComponent(orderName)}&requestId=${requestId}&userName=${encodeURIComponent(userName)}`;
+    location.href = payUrl;
+}
     </script>
 </body>
 </html>
