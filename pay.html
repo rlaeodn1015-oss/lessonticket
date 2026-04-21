@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>스승님 | 안전 결제 시스템</title>
+    <script src="https://js.bootpay.co.kr/bootpay-4.3.4.min.js" type="application/javascript"></script>
+    <style>
+        body { margin: 0; background-color: #F8FAFC; display: flex; justify-content: center; align-items: center; height: 100vh; font-family: 'Pretendard', sans-serif; }
+        .loader-container { text-align: center; }
+        .loader { width: 48px; height: 48px; border: 5px solid #0066FF; border-bottom-color: transparent; border-radius: 50%; display: inline-block; box-sizing: border-box; animation: rotation 1s linear infinite; }
+        @keyframes rotation { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .msg { margin-top: 20px; font-weight: 800; color: #0F172A; font-size: 18px; }
+        .sub-msg { font-size: 13px; color: #64748B; margin-top: 8px; }
+    </style>
+</head>
+<body>
+
+    <div class="loader-container">
+        <div class="loader"></div>
+        <p id="msg" class="msg">안전 결제 모듈을 호출하고 있습니다</p>
+        <p class="sub-msg">잠시만 기다려 주세요...</p>
+    </div>
+
+    <script>
+        async function startPayment() {
+            const params = new URLSearchParams(window.location.search);
+            
+            // URL 파라미터 수신
+            const price = parseInt(params.get('price')) || 0;
+            const orderName = params.get('name') || "스승님 골프 레슨권";
+            const requestId = params.get('requestId') || `SNIM_${Date.now()}`;
+            const userName = params.get('userName') || "고객";
+
+            if (price <= 0) {
+                document.getElementById('msg').innerText = "결제 금액이 올바르지 않습니다.";
+                return;
+            }
+
+            // 부트페이 결제 요청
+            try {
+                const response = await Bootpay.requestPayment({
+                    "application_id": "67ecd171d9af4e5c6d21736b",
+                    "price": price,
+                    "order_name": orderName,
+                    "order_id": requestId,
+                    "pg": "nicepay",
+                    "method": "card",
+                    "user": { "username": userName },
+                    "extra": { "open_type": "iframe" }
+                });
+
+                if (response.event === 'done') {
+                    // 1. 구글 시트 업데이트
+                    const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbzm4khJWhFRaWNkC1hmwFfSUtDK26_CAu_zHI9P-93b4ESCrzeRYUOsXdOPjO-0oIkG/exec";
+                    
+                    document.getElementById('msg').innerText = "결제가 완료되었습니다. 잠시만 기다려주세요.";
+
+                    await fetch(GOOGLE_SHEET_URL, {
+                        method: "POST",
+                        mode: "no-cors",
+                        body: JSON.stringify({
+                            action: "updatePayment",
+                            requestId: requestId,
+                            paymentStatus: "결제 완료",
+                            paidAmount: price
+                        })
+                    });
+                    
+                    // 2. 성공 페이지로 이동
+                    location.href = "success.html";
+                }
+            } catch (e) {
+                alert("결제창을 불러오지 못했습니다: " + e.message);
+                window.history.back(); // 실패 시 이전 페이지로
+            }
+        }
+
+        // 페이지 로드 즉시 실행
+        window.onload = startPayment;
+    </script>
+</body>
+</html>
