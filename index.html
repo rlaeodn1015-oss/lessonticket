@@ -487,18 +487,39 @@ document.getElementById('tab-' + id).classList.add('tab-active');
         }
 
         function goPay() {
-            if (!selectedPlan) return;
-            
-            const pro = prosData.find(p => p.id === currentId);
-            const userName = getUserNameFromUrl();
-            const price = selectedPlan.price;
-            const orderName = `[스승님] ${pro.name} - ${selectedPlan.title}`;
-            const requestId = `SNIM_${currentId}_${selectedPlan.title.replace(/ /g, '_')}_${Date.now()}`;
+    // 1. 상품 선택 여부 확인
+    if (!selectedPlan) {
+        alert("레슨 패키지를 선택해 주세요.");
+        return;
+    }
+    
+    // 2. 현재 선택된 프로 및 고객 정보 수집
+    const pro = prosData.find(p => p.id === currentId);
+    const userName = getUserNameFromUrl(); // URL에서 받은 이름 혹은 '고객'
+    const price = selectedPlan.price;
+    
+    // 3. 결제 상품명 설정 (중요: ' - ' 구분자를 정확히 유지해야 pay.html에서 파싱 가능)
+    // 형식 예시: [스승님] 곽시랑 스승 - 3회 집중 패키지
+    const orderName = `[스승님] ${pro.name} - ${selectedPlan.title}`;
+    
+    // 4. 고유 주문번호(requestId) 생성
+    // 구글 시트에서 결제 건을 식별하는 키값이 됩니다.
+    const requestId = `SNIM_${currentId}_${Date.now()}`; 
 
-            // pay.html로 필요한 모든 데이터를 붙여서 이동
-            const payUrl = `pay.html?price=${price}&name=${encodeURIComponent(orderName)}&requestId=${requestId}&userName=${encodeURIComponent(userName)}`;
-            location.href = payUrl;
-        }
+    // 5. 파라미터 구성 및 이동
+    // 보안과 데이터 무결성을 위해 encodeURIComponent 사용
+    const queryParams = new URLSearchParams({
+        price: price,
+        name: orderName,
+        requestId: requestId,
+        userName: userName
+    });
+
+    const payUrl = `pay.html?${queryParams.toString()}`;
+    
+    // 6. 결제 페이지로 이동
+    location.href = payUrl;
+}
         
         function getUserNameFromUrl() {
             const urlParams = new URLSearchParams(window.location.search);
