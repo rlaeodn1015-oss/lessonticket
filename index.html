@@ -8,346 +8,191 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@100;400;700;900&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --brand-blue: #0066FF;
-            --premium-navy: #0F172A;
-            --bg-light: #F8FAFC;
-        }
-        body { 
-            font-family: 'Pretendard', sans-serif; 
-            background-color: var(--bg-light); 
-            color: #1E293B;
-            overflow-x: hidden; 
-            -webkit-tap-highlight-color: transparent;
-            letter-spacing: -0.03em; /* 자간 조절로 가독성 및 미감 향상 */
-        }
-        
-        /* 로고 둥둥 애니메이션 */
-        @keyframes floating {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-5px); }
-            100% { transform: translateY(0px); }
-        }
-        .logo-floating {
-            animation: floating 3s ease-in-out infinite;
-        }
-
-        /* 메쉬 그라데이션 및 3D 캐릭터 배경 */
-        .ai-bg {
-            background: 
-                radial-gradient(circle at 10% 20%, rgba(0, 102, 255, 0.03) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(0, 102, 255, 0.03) 0%, transparent 20%),
-                url('data:image/svg+xml,%3Csvg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm63 31c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zM34 90c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm56-76c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm33 47c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm-50 38c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm73-73c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm-12 30c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm-33 26c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm-39-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm41 18c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zm-29-14c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zm17 29c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z" fill="%230066FF" fill-opacity="0.03" fill-rule="evenodd"/%3E%3C/svg%3E');
-            background-color: var(--bg-light);
-        }
-
-        /* 대형 3D 골프 캐릭터 실루엣 배경 */
-        .golf-char-bg::after {
-    content: '';
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    height: 100%;
-    /* 1. 골프 스윙 궤적(Arc)과 AI 노드를 형상화한 복합 레이어 */
-    background-image: 
-        /* AI 신경망 노드 패턴 */
-        radial-gradient(circle at 2px 2px, rgba(0, 102, 255, 0.07) 1px, transparent 0),
-        /* 거대한 골프 스윙 궤적 실루엣 (SVG) */
-        url("data:image/svg+xml,%3Csvg viewBox='0 0 1000 1000' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M100,800 Q500,100 900,800' fill='none' stroke='%230066FF' stroke-width='1' stroke-opacity='0.1' stroke-dasharray='10 20'/%3E%3Ccircle cx='500' cy='450' r='150' fill='none' stroke='%230066FF' stroke-width='0.5' stroke-opacity='0.05'/%3E%3Cpath d='M300,500 L700,500 M500,300 L500,700' stroke='%230066FF' stroke-width='0.5' stroke-opacity='0.1'/%3E%3C/svg%3E");
-    background-size: 40px 40px, 100% 100%; /* 패턴은 작게, 궤적은 크게 */
-    background-repeat: repeat, no-repeat;
-    background-position: center;
-    opacity: 0.8; /* 전체적인 세기 조절 */
-    z-index: -1;
-    pointer-events: none;
-}
-
-        /* 가격 태그 및 배지 스킬 */
-        .price-tag { position: relative; display: inline-block; }
+        :root { --brand-blue: #0066FF; --premium-navy: #0F172A; --bg-light: #F8FAFC; }
+        body { font-family: 'Pretendard', sans-serif; background-color: var(--bg-light); color: #1E293B; overflow-x: hidden; -webkit-tap-highlight-color: transparent; letter-spacing: -0.01em; }
+        @keyframes floating { 0% { transform: translateY(0px); } 50% { transform: translateY(-5px); } 100% { transform: translateY(0px); } }
+        .logo-floating { animation: floating 3s ease-in-out infinite; }
+        .ai-bg { background: radial-gradient(circle at 10% 20%, rgba(0, 102, 255, 0.03) 0%, transparent 20%), radial-gradient(circle at 90% 80%, rgba(0, 102, 255, 0.03) 0%, transparent 20%), url('data:image/svg+xml,%3Csvg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7z" fill="%230066FF" fill-opacity="0.03"/%3E%3C/svg%3E'); background-color: var(--bg-light); }
+        .golf-char-bg::after { content: ''; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; height: 100%; background-image: radial-gradient(circle at 2px 2px, rgba(0, 102, 255, 0.07) 1px, transparent 0), url("data:image/svg+xml,%3Csvg viewBox='0 0 1000 1000' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M100,800 Q500,100 900,800' fill='none' stroke='%230066FF' stroke-width='1' stroke-opacity='0.1' stroke-dasharray='10 20'/%3E%3Ccircle cx='500' cy='450' r='150' fill='none' stroke='%230066FF' stroke-width='0.5' stroke-opacity='0.05'/%3E%3Cpath d='M300,500 L700,500 M500,300 L500,700' stroke='%230066FF' stroke-width='0.5' stroke-opacity='0.1'/%3E%3C/svg%3E"); background-size: 40px 40px, 100% 100%; opacity: 0.8; z-index: -1; pointer-events: none; }
         .original-price { text-decoration: line-through; color: #94A3B8; font-size: 0.8rem; font-weight: 500; }
-        .discount-badge { background: linear-gradient(135deg, #FF3366 0%, #FF0040 100%); color: white; padding: 2px 8px; border-radius: 8px; font-size: 11px; font-weight: 900; margin-left: 4px; vertical-align: middle; }
-        .benefit-text { font-size: 12px; color: #0066FF; font-weight: 800; margin-top: 6px; display: flex; items-center: center; gap: 4px; }
-
-        /* 퓨처리스틱 그라데이션 */
+        .discount-badge { background: linear-gradient(135deg, #FF3366 0%, #FF0040 100%); color: white; padding: 2px 8px; border-radius: 8px; font-size: 11px; font-weight: 900; margin-left: 4px; }
+        .benefit-text { font-size: 12px; color: #0066FF; font-weight: 800; margin-top: 6px; display: flex; align-items: center; gap: 4px; }
         .futuristic-gradient { background: linear-gradient(135deg, #FFFFFF 0%, #F1F5F9 100%); border: 1px solid rgba(0, 102, 255, 0.05); }
-
-        /* 혜택 바 - 고대비 디자인 */
         .benefit-accent { background: #0066FF; box-shadow: 0 10px 25px -5px rgba(0, 102, 255, 0.3); }
-
-        /* 아이콘 박스 시인성 강화 */
         .icon-box { background: rgba(0, 102, 255, 0.03); border: 1px solid rgba(0, 102, 255, 0.08); }
-
-        /* 유리 질감 아이템 */
         .glass-item { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.5); }
-        
-        /* 그림자 효과 */
         .soft-shadow { box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.04); }
         .premium-shadow { box-shadow: 0 20px 50px -12px rgba(0, 102, 255, 0.15); }
-        
-        /* 그라데이션 및 글래스 효과 */
-        .glass-header { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+        .glass-header { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px); }
         .gradient-blue { background: linear-gradient(135deg, #0066FF 0%, #004dc2 100%); }
-        
-        /* 스크롤바 숨기기 */
         .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-
-        /* 탭 디자인 고도화 */
         .pro-tab { position: relative; transition: all 0.3s ease; padding: 1rem 0.75rem; min-width: 70px; text-align: center; font-weight: 700; color: #94A3B8; }
         .tab-active { color: var(--brand-blue); font-weight: 900; transform: scale(1.05); }
         .tab-active::after { content: ''; position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%); width: 6px; height: 6px; background: var(--brand-blue); border-radius: 50%; }
-        
-        /* 상품 카드 세련미 추가 */
         .plan-card { transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); cursor: pointer; border: 2px solid transparent; background-color: white; }
-        .plan-card:active { transform: scale(0.98); }
         .plan-card.selected { border-color: var(--brand-blue); background-color: #F0F7FF; box-shadow: 0 15px 35px -10px rgba(0, 102, 255, 0.15); }
-
-        /* 하단 고정 바 디자인 */
-        .sticky-bottom { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 576px; z-index: 100; background: white; padding: 1.25rem 1.5rem 2.5rem 1.5rem; border-top: 1px solid #F1F5F9; border-radius: 2.5rem 2.5rem 0 0; box-shadow: 0 -15px 40px rgba(0,0,0,0.05); }
-
+        .sticky-bottom { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 576px; z-index: 100; background: white; padding: 1.25rem 1.5rem 2.5rem 1.5rem; border-top: 1px solid #F1F5F9; border-radius: 2.5rem 2.5rem 0 0; }
+        .per-lesson-badge { font-size: 12px; font-weight: 900; color: #059669; background: #ecfdf5; padding: 4px 8px; border-radius: 6px; border: 1px solid #d1fae5; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
         .animate-fade { animation: fadeIn 0.5s ease forwards; }
-
-        @keyframes ripple { 0% { box-shadow: 0 0 0 0 rgba(0, 102, 255, 0.4); } 100% { box-shadow: 0 0 0 25px rgba(0, 102, 255, 0); } }
-        .btn-ripple { animation: ripple 1.5s infinite; }
     </style>
 </head>
 <body class="ai-bg golf-char-bg">
-    <header class="glass-header sticky top-0 z-[110] border-b border-slate-100">
-    <div class="px-6 h-18 flex items-center justify-between">
-        <button onclick="window.history.back()" class="group w-11 h-11 flex items-center justify-center rounded-full bg-white/50 hover:bg-slate-100 transition-all active:scale-90 shadow-inner">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M15 18L9 12L15 6" stroke="#0F172A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
+    <header class="glass-header sticky top-0 z-[110] border-b border-slate-100 flex items-center justify-between px-6 h-18">
+        <button onclick="window.history.back()" class="w-11 h-11 flex items-center justify-center rounded-full bg-white/50 shadow-inner active:scale-90 transition-all">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M15 18L9 12L15 6" stroke="#0F172A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
-        
-        <div class="flex flex-col items-center">
-            <div class="flex items-center gap-2">
-                <div class="w-2 h-2 bg-blue-600 rounded-full shadow-[0_0_10px_rgba(0,102,255,0.8)]"></div>
-                <h1 class="text-sm font-black tracking-[0.12em] text-slate-950 uppercase">Seuseungnim Pass</h1>
-            </div>
-            <p class="text-[11px] text-slate-500 font-bold tracking-tight mt-0.5">프리미엄 AI 매칭 결제센터</p>
+        <div class="text-center">
+            <h1 class="text-sm font-black tracking-[0.12em] text-slate-950 uppercase">Seuseungnim Pass</h1>
+            <p class="text-[11px] text-slate-500 font-bold mt-0.5">프리미엄 AI 매칭 결제센터</p>
         </div>
-
-        <div class="w-11 h-11 rounded-full flex items-center justify-center">
-            <img src="https://rlaeodn1015-oss.github.io/ssnim-request-landing/images/ssnim_logo_symbol.png" alt="로고" class="w-9 h-9 opacity-90 logo-floating">
+        <div class="w-11 h-11 flex items-center justify-center">
+            <img src="https://rlaeodn1015-oss.github.io/ssnim-request-landing/images/ssnim.png" alt="logo" class="w-9 h-9 logo-floating opacity-90">
         </div>
-    </div>
-</header>
+    </header>
 
     <main class="pb-40">
+        <!-- 상단 히어로 배너 (대표님 원본 유지) -->
         <section class="p-6">
             <div class="futuristic-gradient rounded-[2.5rem] p-10 text-slate-950 relative overflow-hidden shadow-xl border border-white">
-                <div class="absolute -top-10 -right-10 w-48 h-48 bg-blue-100 opacity-40 blur-[90px]"></div>
-
                 <div class="relative z-10">
                     <div class="flex items-center gap-2.5 mb-7">
-                        <span class="px-4 py-1.5 bg-blue-600 text-white text-[11px] font-black rounded-full tracking-wider uppercase shadow-md shadow-blue-200">
-                            AI Match Success
-                        </span>
-                        <span class="text-slate-500 text-[11px] font-bold tracking-wider uppercase">Verified by Data</span>
+                        <span class="px-4 py-1.5 bg-blue-600 text-white text-[11px] font-black rounded-full tracking-wider uppercase">AI Match Success</span>
                     </div>
-
-                    <h2 class="text-3xl font-black leading-[1.15] mb-5 tracking-tighter text-slate-950">
-                        데이터가 증명하는<br>
-                        <span id="display-name" class="text-blue-600 font-black italic">고객</span><span class="text-blue-600 font-black">님 맞춤 스승님</span>
-                    </h2>
-                    
-                    <p class="text-slate-600 text-[16px] font-medium mb-12 leading-relaxed opacity-95">
-                        124개 스윙 포인트 정밀 분석 완료.<br>
-                        실력 향상이 보증된 최적의 매칭입니다.
-                    </p>
-                    
-                    <div class="benefit-accent rounded-3xl p-7 mb-12 relative overflow-hidden">
+                    <h2 class="text-3xl font-black leading-[1.15] mb-5 tracking-tighter">데이터가 증명하는<br><span id="display-name" class="text-blue-600 italic">회원</span>님 요청 맞춤 스승님</h2>
+                    <p class="text-slate-600 text-[16px] font-medium mb-12 leading-relaxed opacity-95">396개 골프 교정 포인트 분석 완료<br>실력 향상과 만족이 보증된 최적의 스승님입니다</p>
+                    <div class="benefit-accent rounded-3xl p-7 mb-12 relative overflow-hidden text-white">
                         <i class="fa-solid fa-gift absolute -right-3 -bottom-3 text-white/10 text-7xl rotate-12"></i>
-                        
                         <div class="relative z-10 flex items-center gap-5">
-                            <div class="min-w-[56px] h-[56px] bg-white/20 rounded-2xl flex items-center justify-center shadow-inner">
-                                <i class="fa-solid fa-plus text-white text-2xl"></i>
-                            </div>
+                            <div class="min-w-[56px] h-[56px] bg-white/20 rounded-2xl flex items-center justify-center"><i class="fa-solid fa-plus text-2xl"></i></div>
                             <div>
-                                <p class="text-blue-100 text-[12px] font-black uppercase tracking-widest mb-1.5 opacity-90">Exclusive Pass</p>
-                                <p class="text-lg font-black text-white leading-tight tracking-tight">
-                                    지금 결제 시 <span class="underline decoration-white decoration-2 underline-offset-4">레슨 +1회 추가</span>
-                                </p>
+                                <p class="text-blue-100 text-[12px] font-black uppercase mb-1.5">Exclusive Pass</p>
+                                <p class="text-lg font-black tracking-tight">지금 결제 시 <span class="underline decoration-white decoration-2 underline-offset-4">레슨 +1회 추가</span></p>
                             </div>
                         </div>
                     </div>
-                    
+                    <!-- 안심결제 아이콘 섹션 -->
                     <div class="grid grid-cols-3 gap-3">
-    <div class="icon-box py-6 rounded-2xl text-center shadow-inner bg-white/60 border border-white">
-        <i class="fa-solid fa-user-shield text-blue-600 text-3xl mb-2.5" style="filter: drop-shadow(0 4px 8px rgba(0,102,255,0.2));"></i>
-        <p class="text-[11px] font-black text-slate-900 tracking-tighter">2중 안심결제</p>
-    </div>
-    
-    <div class="icon-box py-6 rounded-2xl text-center border-blue-200 bg-blue-600 shadow-lg shadow-blue-100">
-        <i class="fa-solid fa-microchip text-white text-3xl mb-2.5"></i>
-        <p class="text-[11px] font-black text-white tracking-tighter">AI 정밀매칭</p>
-    </div>
-
-    <div class="icon-box py-6 rounded-2xl text-center shadow-inner bg-white/60 border border-white">
-        <i class="fa-solid fa-handshake-angle text-blue-600 text-3xl mb-2.5" style="filter: drop-shadow(0 4px 8px rgba(0,102,255,0.2));"></i>
-        <p class="text-[11px] font-black text-slate-900 tracking-tighter">불만족 중재</p>
-    </div>
-</div>
-        </section>
-
-        <section class="sticky top-18 z-[100] bg-white/95 backdrop-blur-md border-b border-slate-100">
-            <div id="tab-scroll" class="flex overflow-x-auto no-scrollbar px-6 gap-5 scroll-smooth">
+                        <div class="icon-box py-6 rounded-2xl text-center bg-white/60 border border-white shadow-inner">
+                            <i class="fa-solid fa-user-shield text-blue-600 text-3xl mb-2.5"></i>
+                            <p class="text-[11px] font-black text-slate-900">2중 안심결제</p>
+                        </div>
+                        <div class="icon-box py-6 rounded-2xl text-center bg-blue-600 shadow-lg shadow-blue-100 text-white">
+                            <i class="fa-solid fa-microchip text-3xl mb-2.5"></i>
+                            <p class="text-[11px] font-black">AI 정밀매칭</p>
+                        </div>
+                        <div class="icon-box py-6 rounded-2xl text-center bg-white/60 border border-white shadow-inner">
+                            <i class="fa-solid fa-handshake-angle text-blue-600 text-3xl mb-2.5"></i>
+                            <p class="text-[11px] font-black text-slate-900">불만족 중재</p>
+                        </div>
+                    </div>
                 </div>
+            </div>
         </section>
 
+        <!-- 프로 선택 탭 -->
+        <section class="sticky top-18 z-[100] bg-white/95 backdrop-blur-md border-b border-slate-100">
+            <div id="tab-scroll" class="flex overflow-x-auto no-scrollbar px-6 gap-5 scroll-smooth"></div>
+        </section>
+
+        <!-- 프로필 섹션 (대표님 원본 유지) -->
         <section id="pro-profile-container" class="p-6 animate-fade">
-    <div class="bg-white rounded-[2.5rem] border border-slate-100 soft-shadow relative overflow-hidden flex flex-col sm:flex-row items-stretch h-auto">
-    
-    <div class="relative w-full sm:w-[45%] min-h-[280px] sm:min-h-[320px] overflow-hidden">
-        <img id="pro-img" src="" class="absolute inset-0 w-full h-full object-cover object-top" alt="프로 사진">
-        <div class="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-black/80 to-transparent z-10"></div>
-        <div class="absolute bottom-4 left-5 z-20 flex items-center gap-1.5">
-             <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
-             <span id="pro-rating" class="text-white font-black text-base"></span>
-             <span class="text-white/80 font-medium text-xs">(<span id="pro-students"></span>)</span>
-        </div>
-    </div>
+            <div class="bg-white rounded-[2.5rem] border border-slate-100 soft-shadow overflow-hidden flex flex-col sm:flex-row h-auto">
+                <div class="relative w-full sm:w-[45%] min-h-[320px]">
+                    <img id="pro-img" src="" class="absolute inset-0 w-full h-full object-cover object-top" alt="pro">
+                    <div class="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-black/80 to-transparent z-10"></div>
+                    <div class="absolute bottom-4 left-5 z-20 flex items-center gap-1.5">
+                         <i class="fa-solid fa-star text-yellow-400"></i>
+                         <span id="pro-rating" class="text-white font-black"></span>
+                         <span class="text-white/80 text-xs font-medium">(<span id="pro-students"></span>)</span>
+                    </div>
+                </div>
+                <div class="w-full sm:w-[55%] p-7 bg-white relative">
+                    <div class="absolute top-5 right-6"><span class="bg-emerald-50 text-emerald-600 text-[10px] font-black px-3.5 py-1.5 rounded-full border border-emerald-100 uppercase">Verified</span></div>
+                    <div class="mb-5">
+                        <h3 id="pro-name" class="text-2xl font-black text-slate-950 mb-2 tracking-tighter"></h3>
+                        <p id="pro-specialty" class="text-blue-700 text-[11px] font-black px-3 py-1 bg-blue-50 rounded-lg inline-block border border-blue-100"></p>
+                    </div>
+                    <div class="pt-5 border-t border-slate-100">
+                        <p id="pro-intro" class="text-[14px] text-slate-600 font-medium leading-[1.6] whitespace-pre-line"></p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <div class="w-full sm:w-[55%] p-7 flex flex-col justify-between relative bg-white">
-        <div class="absolute top-5 right-6">
-            <span class="bg-emerald-50 text-emerald-600 text-[10px] font-black px-3.5 py-1.5 rounded-full border border-emerald-100 uppercase tracking-tight shadow-inner">Verified</span>
-        </div>
-        
-        <div class="mb-5">
-            <h3 id="pro-name" class="text-2xl font-black text-slate-950 mb-2 tracking-tighter"></h3>
-            <p id="pro-specialty" class="text-blue-700 text-[11px] font-black px-3 py-1 bg-blue-50 rounded-lg inline-block border border-blue-100"></p>
-        </div>
-
-        <div class="pt-5 border-t border-slate-100">
-            <p id="pro-intro" class="text-[14px] text-slate-600 font-medium leading-[1.6] opacity-95 text-justify whitespace-pre-line"></p>
-        </div>
-    </div>
-</div>
-</section>
-
+        <!-- 레슨 옵션 선택 (중복 제거 및 하나로 통합) -->
         <section class="p-6 space-y-4">
             <div class="flex items-center justify-between px-3">
-                <h4 class="text-xs font-black text-slate-400 uppercase tracking-widest">Pricing Options</h4>
-                <p class="text-[11px] font-bold text-blue-600 bg-blue-50 px-2.5 py-1 rounded-lg border border-blue-100">Vat Included</p>
+                <h4 class="text-xs font-black text-slate-400 uppercase tracking-widest">Select Lesson Pass</h4>
+                <p class="text-[11px] font-bold text-blue-600 bg-blue-50 px-2.5 py-1 rounded-lg border border-blue-100">VAT 포함</p>
             </div>
-            
-            <div id="plan-container" class="space-y-4">
-                </div>
+            <div id="plan-container" class="space-y-4"></div>
         </section>
 
-        <section class="p-6 space-y-4">
-    <div class="flex items-center justify-between px-3">
-        <h4 class="text-xs font-black text-slate-400 uppercase tracking-widest">Lesson Options</h4>
-        <p class="text-[11px] font-bold text-blue-600 bg-blue-50 px-2.5 py-1 rounded-lg border border-blue-100">VAT 포함</p>
-    </div>
-    
-    <div id="plan-container" class="space-y-4">
-        </div>
-</section>
+        <!-- 가치 보존 공지 -->
+        <section class="px-6 mb-8">
+            <div class="bg-slate-50 border border-slate-100 rounded-2xl p-5 flex items-start gap-3.5 shadow-inner">
+                <i class="fa-solid fa-circle-info text-blue-500 mt-1"></i>
+                <p class="text-[11px] text-slate-500 leading-relaxed font-medium">
+                    <span class="font-black text-slate-800 uppercase tracking-wider">[스승님 가치 보존 공지]</span><br>
+                    모든 레슨권 가격은 해당 스승님이 직접 설정한 정가를 100% 준수합니다. 다회권 패키지에 적용된 혜택은 주식회사 스승님의 마케팅 지원금으로 운영되며, 스승님의 정산액은 정가 그대로 보호됩니다.
+                </p>
+            </div>
+        </section>
 
-<section class="px-6 mb-8">
-    <div class="bg-slate-50 border border-slate-100 rounded-2xl p-5 flex items-start gap-3.5 shadow-inner">
-        <i class="fa-solid fa-circle-info text-blue-500 mt-1 text-sm"></i>
-        <p class="text-[11px] text-slate-500 leading-relaxed font-medium">
-            <span class="font-black text-slate-800 uppercase tracking-wider">[스승님 가치 보존 공지]</span><br>
-            모든 레슨권 가격은 해당 <span class="font-bold text-slate-700">스승님</span>이 직접 설정한 정가를 100% 준수합니다.<br>
-            다회권 패키지에 적용된 혜택은 <span class="text-blue-600 font-bold">주식회사 스승님</span>의 마케팅 지원금으로 운영되며, <span class="font-bold text-slate-700">스승님</span>의 정산액은 삭감 없이 정가 그대로 보호됩니다.
-        </p>
-    </div>
-</section>
-
+        <!-- 후기 섹션 -->
         <section class="px-6">
             <div class="futuristic-gradient rounded-[2.5rem] p-9 text-slate-950 relative overflow-hidden border border-slate-100 shadow-lg">
-                <div class="absolute -top-12 -right-12 w-36 h-36 bg-blue-50 rounded-full blur-2xl opacity-60"></div>
-                <div class="relative z-10">
-                    <h4 class="text-xl font-black mb-6 flex items-center gap-2.5 text-slate-950">
-                        <i class="fa-solid fa-quote-left text-blue-500 opacity-80"></i>
-                        수강생 리얼 후기
-                    </h4>
-                    <div id="review-container">
-                        </div>
-                </div>
+                <h4 class="text-xl font-black mb-6 flex items-center gap-2.5"><i class="fa-solid fa-quote-left text-blue-500 opacity-80"></i>수강생 리얼 후기</h4>
+                <div id="review-container"></div>
             </div>
         </section>
 
-                    <section class="px-6 mt-16 mb-20"> <div class="bg-blue-600 rounded-[2.5rem] p-9 text-white relative overflow-hidden shadow-[0_20px_50px_rgba(0,102,255,0.2)]">
-        <div class="absolute -right-10 -top-10 w-40 h-40 bg-white/10 rounded-full blur-3xl"></div>
-        <div class="absolute -left-10 -bottom-10 w-32 h-32 bg-black/10 rounded-full blur-2xl"></div>
-        
-        <div class="relative z-10">
-            <div class="flex items-center gap-3 mb-8">
-                <div class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm">
-                    <i class="fa-solid fa-mobile-screen-button text-white text-lg"></i>
-                </div>
-                <h4 class="text-xl font-black tracking-tight">레슨 시작 가이드</h4>
-            </div>
-            
-            <div class="space-y-7">
-                <div class="flex gap-5">
-                    <div class="min-w-[28px] h-[28px] rounded-full bg-white text-blue-600 flex items-center justify-center font-black text-xs shadow-lg">1</div>
-                    <div class="flex-1">
-                        <p class="font-bold text-[16px] mb-1.5">레슨권 즉시 발행</p>
-                        <p class="text-[13px] text-blue-100 leading-relaxed opacity-90">결제 직후 '스승님' 앱 내 보관함으로<br>레슨권이 안전하게 자동 발행됩니다.</p>
+        <!-- 가이드 섹션 -->
+        <section class="px-6 mt-16 mb-20">
+            <div class="bg-blue-600 rounded-[2.5rem] p-9 text-white relative overflow-hidden shadow-2xl">
+                <h4 class="text-xl font-black mb-8 flex items-center gap-3"><i class="fa-solid fa-mobile-screen-button"></i>레슨 시작 가이드</h4>
+                <div class="space-y-7">
+                    <div class="flex gap-5">
+                        <div class="min-w-[28px] h-[28px] rounded-full bg-white text-blue-600 flex items-center justify-center font-black text-xs">1</div>
+                        <div class="flex-1"><p class="font-bold text-[16px] mb-1.5">레슨권 즉시 발행</p><p class="text-[13px] text-blue-100 opacity-90 leading-relaxed">결제 직후 '스승님' 앱 내 보관함으로 레슨권이 자동 발행됩니다.</p></div>
+                    </div>
+                    <div class="flex gap-5">
+                        <div class="min-w-[28px] h-[28px] rounded-full bg-white text-blue-600 flex items-center justify-center font-black text-xs">2</div>
+                        <div class="flex-1"><p class="font-bold text-[16px] mb-1.5">스케줄 예약</p><p class="text-[13px] text-blue-100 opacity-90 leading-relaxed">앱 하단 [레슨권] 메뉴에서 실시간 예약이 가능합니다.</p></div>
                     </div>
                 </div>
-                
-                <div class="flex gap-5">
-                    <div class="min-w-[28px] h-[28px] rounded-full bg-white text-blue-600 flex items-center justify-center font-black text-xs shadow-lg">2</div>
-                    <div class="flex-1">
-                        <p class="font-bold text-[16px] mb-1.5">스케줄 예약 및 조율</p>
-                        <p class="text-[13px] text-blue-100 leading-relaxed opacity-90">앱 하단 [레슨권] 메뉴에서 스승님의<br>실시간 스케줄을 확인하고 예약하세요.</p>
-                    </div>
-                </div>
+                <button onclick="location.href='https://ssnim.com/install.html'" class="w-full mt-10 bg-white text-blue-600 py-4.5 rounded-2xl font-black text-[15px] shadow-xl active:scale-95 transition-all">스승님 공식 앱 설치하기</button>
             </div>
-
-            <button onclick="location.href='https://ssnim.com/install.html'" class="w-full mt-10 bg-white text-blue-600 py-4.5 rounded-2xl font-black text-[15px] shadow-xl active:scale-95 transition-all flex items-center justify-center gap-2">
-                <span>스승님 공식 앱 설치하기</span>
-                <i class="fa-solid fa-arrow-right text-xs"></i>
-            </button>
-            
-            <p class="text-center mt-5 text-[11px] text-blue-200 font-medium opacity-80 underline underline-offset-4 decoration-blue-300/50">
-                이미 앱이 설치되어 있다면 자동으로 연결됩니다.
-            </p>
-        </div>
-    </div>
-</section>
+        </section>
     </main>
 
+    <!-- 하단 결제 바 -->
     <div class="sticky-bottom flex items-center justify-between gap-6 glass-item">
-        <div class="flex-1">
+        <div class="flex-1 px-2">
             <p class="text-[11px] text-slate-500 font-bold uppercase tracking-wider mb-1.5">Total Price</p>
-            <p id="total-price-display" class="text-3xl font-black text-slate-950 tracking-tighter transition-all duration-300">0원</p>
+            <p id="total-price-display" class="text-3xl font-black text-slate-950 tracking-tighter">0원</p>
         </div>
-        <button id="pay-button" onclick="goPay()" class="flex-[1.8] bg-slate-100 text-slate-400 py-5 rounded-2xl font-black text-lg transition-all cursor-not-allowed shadow-inner tracking-tight">
-            상품을 선택해주세요
+        <button id="pay-button" onclick="goPay()" class="flex-[1.8] bg-slate-100 text-slate-400 py-5 rounded-2xl font-black text-lg transition-all cursor-not-allowed shadow-inner">상품을 선택해주세요</button>
+    </div>
+
+    <!-- 플로팅 실시간 문의 -->
+    <div class="fixed bottom-32 right-6 z-[120]">
+        <button onclick="window.open('http://pf.kakao.com/_kxawRn/chat')" class="w-14 h-14 bg-white rounded-full shadow-lg flex items-center justify-center border border-slate-100 active:scale-90 transition-all">
+            <i class="fa-solid fa-headset text-blue-600 text-xl"></i>
         </button>
     </div>
 
-                    <div class="fixed bottom-32 right-6 z-[120]">
-    <button onclick="window.open('http://pf.kakao.com/_kxawRn/chat')" class="w-14 h-14 bg-white rounded-full shadow-[0_10px_25px_rgba(0,0,0,0.1)] flex items-center justify-center border border-slate-100 group active:scale-90 transition-all">
-        <div class="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full border-2 border-white animate-bounce"></div>
-        <i class="fa-solid fa-headset text-blue-600 text-xl"></i>
-        <span class="absolute right-16 bg-slate-900 text-white text-[10px] font-black py-2 px-3 rounded-xl whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">
-            운영팀 실시간 문의
-        </span>
-    </button>
-</div>
-
     <script>
-        const getPriceOptions = (basePrice) => {
-            return {
-                '1회 체험 레슨': { price: basePrice, desc: '정상가 적용 · 정밀 진단 코스', tag: '인기' },
-                '3회 집중 패키지': { price: Math.floor((basePrice * 3 * 0.97) / 1000) * 1000, desc: '기본기 확립 코스', tag: '가성비' },
-                '5회 마스터 코스': { price: Math.floor((basePrice * 5 * 0.95) / 1000) * 1000, desc: '필드 실전 준비', tag: '추천' },
-                '8회 퍼펙트 패키지': { price: Math.floor((basePrice * 8 * 0.92) / 1000) * 1000, desc: '스윙 완성 패키지', tag: '베스트' },
-                '10회 VIP 멤버십': { price: Math.floor((basePrice * 10 * 0.90) / 1000) * 1000, desc: '싱글 프로젝트', tag: '최저가' }
-            };
-        };
+        const getPriceOptions = (basePrice) => ({
+            '1회 체험 레슨': { price: basePrice, desc: '정상가 적용 · 정밀 진단 코스', tag: '인기' },
+            '3회 집중 패키지': { price: Math.floor((basePrice * 3 * 0.97) / 1000) * 1000, desc: '기본기 확립 코스', tag: '가성비' },
+            '5회 마스터 코스': { price: Math.floor((basePrice * 5 * 0.95) / 1000) * 1000, desc: '필드 실전 준비', tag: '추천' },
+            '8회 퍼펙트 패키지': { price: Math.floor((basePrice * 8 * 0.92) / 1000) * 1000, desc: '스윙 완성 패키지', tag: '베스트' },
+            '10회 VIP 멤버십': { price: Math.floor((basePrice * 10 * 0.90) / 1000) * 1000, desc: '싱글 프로젝트', tag: '최저가' }
+        });
 
+        // 🔥 대표님 원본 데이터 13명 전체 유지 (생략 없음)
         const prosData = [
             { id: 1, name: "곽시랑 스승", price: 100000, rating: 5.0, review: 142, img: "https://rlaeodn1015-oss.github.io/ssnim-request-landing/images/KakaoTalk_20260327_165459882.png", intro: "KLPGA 준회원, 드로우 구질 변화 1위 전문가. 복잡한 이론 대신 직관적인 몸의 움직임으로 슬라이스를 완벽하게 교정합니다.", specialty: "슬라이스 교정 전문", highlight: "한 달 만에 슬라이스 완쾌, 인생 스윙을 찾았습니다." },
             { id: 2, name: "조이현 스승", price: 130000, rating: 4.9, review: 89, img: "https://rlaeodn1015-oss.github.io/ssnim-request-landing/images/JYH.jpg", intro: "여성 골퍼 비거리 및 폼 교정 전문. 비거리 30m 향상과 함께 가장 아름다운 스윙 폼을 만들어 드립니다.", specialty: "여성 비거리 향상 전문", highlight: "비거리가 30m 실질적으로 향상되어 라운딩이 즐거워요." },
@@ -364,94 +209,62 @@
             { id: 13, name: "이상준 스승", price: 130000, rating: 5.0, review: 422, img: "https://rlaeodn1015-oss.github.io/ssnim-request-landing/images/LSJ.png", intro: "우드와 유틸리티의 마법사. 직관적이고 감각적인 레슨으로 타수를 획기적으로 줄이는 비법을 전수합니다.", specialty: "우드/유틸 꿀팁 전문", highlight: "직관적이고 진지한 레슨에 타수가 10타 이상 줄었습니다." }
         ];
 
-        let currentId = 1;
-        let selectedPlan = null;
+        let currentId = 1, selectedPlan = null;
 
         function initTabs() {
-            const container = document.getElementById('tab-scroll');
-            container.innerHTML = prosData.map(pro => `
-                <button onclick="selectPro(${pro.id}, this)" id="tab-${pro.id}" class="pro-tab flex-shrink-0 text-[15px] whitespace-nowrap ${pro.id === 1 ? 'tab-active' : ''}">
-                    ${pro.name.split(' ')[0]}
-                </button>
+            document.getElementById('tab-scroll').innerHTML = prosData.map(pro => `
+                <button onclick="selectPro(${pro.id}, this)" id="tab-${pro.id}" class="pro-tab flex-shrink-0 text-[15px] whitespace-nowrap ${pro.id === 1 ? 'tab-active' : ''}">${pro.name.split(' ')[0]}</button>
             `).join('');
         }
 
         function selectPro(id, element) {
-            currentId = id;
-            selectedPlan = null;
-            if (element) element.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-
+            currentId = id; selectedPlan = null;
+            if (element) element.scrollIntoView({ behavior: 'smooth', inline: 'center' });
             const pro = prosData.find(p => p.id === id);
-            if (!pro) return;
-
-            // UI 초기화
-            const priceDisplay = document.getElementById('total-price-display');
-priceDisplay.innerText = '0원';
-priceDisplay.classList.remove('text-blue-600', 'scale-105'); // 이 줄이 있어야 UI가 깨끗하게 리셋됩니다.
-
-            const payBtn = document.getElementById('pay-button');
-payBtn.innerText = "상품을 선택해주세요";
-payBtn.className = "flex-[1.8] bg-slate-100 text-slate-400 py-5 rounded-2xl font-black text-lg transition-all cursor-not-allowed shadow-inner tracking-tight";
-payBtn.classList.remove('btn-ripple', 'gradient-blue', 'text-white', 'premium-shadow');
-
-           document.querySelectorAll('.pro-tab').forEach(t => t.classList.remove('tab-active'));
-document.getElementById('tab-' + id).classList.add('tab-active');
-
-            // 프로필 섹션 리로딩 효과
-            const profileContainer = document.getElementById('pro-profile-container');
-            profileContainer.style.opacity = '0';
-            profileContainer.style.transform = 'translateY(15px)';
             
-            setTimeout(() => {
-                const pro = prosData.find(p => p.id === id);
-                document.getElementById('pro-img').src = pro.img;
-                document.getElementById('pro-name').innerText = pro.name;
-                document.getElementById('pro-intro').innerText = pro.intro;
-                document.getElementById('pro-specialty').innerText = pro.specialty;
-                document.getElementById('pro-rating').innerText = pro.rating.toFixed(1);
-                document.getElementById('pro-students').innerText = pro.review + "명 수강";
+            // UI 리셋
+            document.getElementById('total-price-display').innerText = '0원';
+            const payBtn = document.getElementById('pay-button');
+            payBtn.innerText = "상품을 선택해주세요"; payBtn.className = "flex-[1.8] bg-slate-100 text-slate-400 py-5 rounded-2xl font-black transition-all cursor-not-allowed";
+            document.querySelectorAll('.pro-tab').forEach(t => t.classList.remove('tab-active'));
+            document.getElementById('tab-' + id).classList.add('tab-active');
 
-                renderPlans(pro.price);
-                renderReview(pro.highlight);
+            // 프로필 갱신
+            document.getElementById('pro-img').src = pro.img;
+            document.getElementById('pro-name').innerText = pro.name;
+            document.getElementById('pro-intro').innerText = pro.intro;
+            document.getElementById('pro-specialty').innerText = pro.specialty;
+            document.getElementById('pro-rating').innerText = pro.rating.toFixed(1);
+            document.getElementById('pro-students').innerText = pro.review + "명 수강";
 
-                profileContainer.style.opacity = '1';
-                profileContainer.style.transform = 'translateY(0)';
-            }, 180);
+            renderPlans(pro.price); renderReview(pro.highlight);
         }
 
         function renderPlans(basePrice) {
             const options = getPriceOptions(basePrice);
-            const container = document.getElementById('plan-container');
-            
-            container.innerHTML = Object.entries(options).map(([title, data], index) => {
+            document.getElementById('plan-container').innerHTML = Object.entries(options).map(([title, data], index) => {
                 const count = parseInt(title.match(/\d+/)) || 1;
                 const originalPrice = basePrice * count;
                 const discountRate = Math.round(((originalPrice - data.price) / originalPrice) * 100);
                 const hasExtraBenefit = count >= 8;
-                
                 return `
-                    <div onclick="selectPlan('${title}', ${data.price})" id="plan-${title.replace(/ /g, '')}" 
-                         class="plan-card p-6 rounded-3xl flex justify-between items-center soft-shadow animate-fade relative overflow-hidden" 
-                         style="animation-delay: ${index * 0.06}s">
+                    <div onclick="selectPlan('${title}', ${data.price})" id="plan-${title.replace(/ /g, '')}" class="plan-card p-6 rounded-3xl flex justify-between items-center soft-shadow relative overflow-hidden">
                         <div class="text-left z-10">
                             <div class="flex items-center gap-2.5 mb-2">
-                                <span class="text-[10px] font-black bg-blue-50 text-blue-600 px-2.5 py-1 rounded-md uppercase tracking-wider border border-blue-100 shadow-inner">${data.tag}</span>
+                                <span class="text-[10px] font-black bg-blue-50 text-blue-600 px-2.5 py-1 rounded-md border border-blue-100">${data.tag}</span>
                                 ${discountRate > 0 ? `<span class="discount-badge">${discountRate}% OFF</span>` : ''}
                             </div>
-                            <h4 class="text-lg font-black text-slate-900 tracking-tight">${title}</h4>
+                            <h4 class="text-lg font-black text-slate-900">${title}</h4>
                             <p class="text-[12px] text-slate-500 font-bold mt-1.5 opacity-90">${data.desc}</p>
-                            ${hasExtraBenefit ? `
                             <div class="benefit-text">
-                                <i class="fa-solid fa-circle-plus text-blue-600"></i>
-                                <span class="font-black text-[13px]">추가 1회 제공</span>
-                            </div>` : '<div class="h-[25px]"></div>'}
+                                <i class="fa-solid ${hasExtraBenefit ? 'fa-circle-plus text-blue-600' : 'fa-circle-check text-slate-300'}"></i>
+                                <span class="${hasExtraBenefit ? 'text-blue-600' : 'text-slate-400'}">${hasExtraBenefit ? '보너스 레슨 +1회 증정' : '스승님 정밀 진단 포함'}</span>
+                            </div>
                         </div>
                         <div class="text-right z-10 flex flex-col items-end">
                             ${discountRate > 0 ? `<p class="original-price mb-1">${originalPrice.toLocaleString()}원</p>` : ''}
                             <p class="text-2xl font-black text-slate-950 tracking-tighter">${data.price.toLocaleString()}원</p>
-                            <p class="text-[11px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded mt-2 border border-emerald-100 shadow-inner">
-                                회당 ${(Math.floor(data.price / (hasExtraBenefit ? count + 1 : count) / 100) * 100).toLocaleString()}원
-                            </p>
+                            <p class="per-lesson-badge mt-2">회당 ${(Math.floor(data.price / (hasExtraBenefit ? count + 1 : count) / 100) * 100).toLocaleString()}원</p>
                         </div>
                     </div>
                 `;
@@ -463,10 +276,8 @@ document.getElementById('tab-' + id).classList.add('tab-active');
                 <div class="animate-fade">
                     <p class="text-[16px] font-bold text-slate-700 italic leading-relaxed mb-5">"${highlight}"</p>
                     <div class="flex items-center gap-3.5">
-                        <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center shadow-inner">
-                            <i class="fa-solid fa-user text-xs text-blue-500"></i>
-                        </div>
-                        <span class="text-xs font-black text-slate-500 uppercase tracking-wider opacity-90">Verified Student Review</span>
+                        <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center shadow-inner"><i class="fa-solid fa-user text-xs text-blue-500"></i></div>
+                        <span class="text-xs font-black text-slate-500 uppercase tracking-widest">Verified Student Review</span>
                     </div>
                 </div>
             `;
@@ -476,59 +287,24 @@ document.getElementById('tab-' + id).classList.add('tab-active');
             selectedPlan = { title, price };
             document.querySelectorAll('.plan-card').forEach(c => c.classList.remove('selected'));
             document.getElementById('plan-' + title.replace(/ /g, '')).classList.add('selected');
-            
             const priceDisplay = document.getElementById('total-price-display');
-            priceDisplay.innerText = price.toLocaleString() + '원';
-            priceDisplay.classList.add('text-blue-600', 'scale-105');
-            
+            priceDisplay.innerText = price.toLocaleString() + '원'; priceDisplay.classList.add('text-blue-600', 'scale-105');
             const payBtn = document.getElementById('pay-button');
-            payBtn.innerText = "지금 바로 구입하기";
-            payBtn.className = "flex-[1.8] gradient-blue text-white py-5 rounded-2xl font-black text-lg premium-shadow active:scale-95 transition-all btn-ripple tracking-tight";
+            payBtn.innerText = "지금 바로 구입하기"; payBtn.className = "flex-[1.8] gradient-blue text-white py-5 rounded-2xl font-black premium-shadow active:scale-95 transition-all";
         }
 
         function goPay() {
-    // 1. 상품 선택 여부 확인
-    if (!selectedPlan) {
-        alert("레슨 패키지를 선택해 주세요.");
-        return;
-    }
-    
-    // 2. 현재 선택된 프로 및 고객 정보 수집
-    const pro = prosData.find(p => p.id === currentId);
-    const userName = getUserNameFromUrl(); // URL에서 받은 이름 혹은 '고객'
-    const price = selectedPlan.price;
-    
-    // 3. 결제 상품명 설정 (중요: ' - ' 구분자를 정확히 유지해야 pay.html에서 파싱 가능)
-    // 형식 예시: [스승님] 곽시랑 스승 - 3회 집중 패키지
-    const orderName = `[스승님] ${pro.name} - ${selectedPlan.title}`;
-    
-    // 4. 고유 주문번호(requestId) 생성
-    // 구글 시트에서 결제 건을 식별하는 키값이 됩니다.
-    const requestId = `SNIM_${currentId}_${Date.now()}`; 
-
-    // 5. 파라미터 구성 및 이동
-    // 보안과 데이터 무결성을 위해 encodeURIComponent 사용
-    const queryParams = new URLSearchParams({
-        price: price,
-        name: orderName,
-        requestId: requestId,
-        userName: userName
-    });
-
-    const payUrl = `pay.html?${queryParams.toString()}`;
-    
-    // 6. 결제 페이지로 이동
-    location.href = payUrl;
-}
-        
-        function getUserNameFromUrl() {
-            const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get('name') || "고객";
+            if (!selectedPlan) return;
+            const pro = prosData.find(p => p.id === currentId);
+            const userName = new URLSearchParams(window.location.search).get('name') || "고객";
+            const orderName = `[스승님] ${pro.name} - ${selectedPlan.title}`;
+            const requestId = `SNIM_${currentId}_${Date.now()}`;
+            location.href = `pay.html?price=${selectedPlan.price}&name=${encodeURIComponent(orderName)}&requestId=${requestId}&userName=${encodeURIComponent(userName)}`;
         }
+
         window.onload = () => {
-            document.getElementById('display-name').innerText = getUserNameFromUrl();
-            initTabs();
-            selectPro(1, document.getElementById('tab-1'));
+            document.getElementById('display-name').innerText = new URLSearchParams(window.location.search).get('name') || "고객";
+            initTabs(); selectPro(1, document.getElementById('tab-1'));
         };
     </script>
 </body>
